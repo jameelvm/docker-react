@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run -e CI=true jameelvm1/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  regions: "us-west-2"
+  app: "JKubernetesDeployment"
+  env: "JKubernetesDeployment-env"
+  bucket_name: "elasticbeanstalk-us-west-2-268310970254"
+  bucket_path: "JKubernetesDeployment"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_id: "$AWS_SECRET_KEY"
+
+
